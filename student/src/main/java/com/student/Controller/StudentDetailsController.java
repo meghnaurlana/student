@@ -14,22 +14,22 @@ public class StudentDetailsController {
     StudentDetailsService studentDetailsService;
 
     @PostMapping("/addDetails")
-    public StudentDetails addDetails(@RequestBody StudentDetails studentDetails){
+    public StudentDetails addDetails(@RequestBody StudentDetails studentDetails) {
         return studentDetailsService.saveDetails(studentDetails);
     }
 
     @PostMapping("/addAllDetails")
-    public List<StudentDetails> addAllDetails(@RequestBody List<StudentDetails> studentDetails){
+    public List<StudentDetails> addAllDetails(@RequestBody List<StudentDetails> studentDetails) {
         return studentDetailsService.saveAllDetails(studentDetails);
     }
 
     @GetMapping("/getDetails")
-    public List<StudentDetails> findDetails(){
+    public List<StudentDetails> findDetails() {
         return studentDetailsService.getDetails();
     }
 
     @GetMapping("/post/{id}")
-    StudentDetailsDto getDetailsByID(@PathVariable int id){
+    StudentDetailsDto getDetailsByID(@PathVariable int id) {
         return studentDetailsService.getDetailsByID(id);
     }
 
