@@ -2,11 +2,11 @@ package com.student.Controller;
 
 import com.student.Entity.StudentDetails;
 import com.student.Service.StudentDetailsService;
-import com.student.dto.StudentDetailsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class StudentDetailsController {
@@ -28,9 +28,18 @@ public class StudentDetailsController {
         return studentDetailsService.getDetails();
     }
 
-    @GetMapping("/post/{id}")
-    StudentDetailsDto getDetailsByID(@PathVariable int id) {
-        return studentDetailsService.getDetailsByID(id);
+    @GetMapping("/{studentId}")
+    public StudentDetails getStudentDetails(@PathVariable int studentId){
+        return studentDetailsService.getStudentDetails(studentId);
     }
 
+    @GetMapping("student/{studentId}/marks")
+    public Map<String, Object> getStudentMarks(@PathVariable int studentId){
+        return studentDetailsService.getStudentMarks(studentId);
+    }
+
+@GetMapping("/classTopper")
+    public StudentDetails getClassTopper(){
+        return studentDetailsService.getClassTopper();
+}
 }

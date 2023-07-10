@@ -17,19 +17,19 @@ public class Subjects {
     @Id
 public int id;
     @Column(name = "telugu")
-    public String telugu;
+    public int telugu;
     @Column(name = "hindi")
-    public String hindi;
+    public int hindi;
     @Column(name = "english")
-    public String english;
+    public int english;
     @Column(name = "maths")
-    public String maths;
+    public int maths;
     @Column(name = "science")
-    public String science;
+    public int science;
     @Column(name = "social")
-    public String social;
-    @Column(name = "exam_type")
-    public String exam_type;
+    public int social;
+    @Column(name = "examType")
+    public String examType;
 
 
 }

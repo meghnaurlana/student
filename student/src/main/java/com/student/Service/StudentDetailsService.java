@@ -1,12 +1,14 @@
 package com.student.Service;
 
 import com.student.Entity.StudentDetails;
+import com.student.Entity.Subjects;
 import com.student.Repository.StudentDetailsRepository;
-import com.student.dto.StudentDetailsDto;
+import com.student.Repository.SubjectsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StudentDetailsService {
@@ -25,14 +27,30 @@ public class StudentDetailsService {
         return studentDetailsRepository.findAll();
     }
 
-    public List<StudentDetails> sum() {
-        List<StudentDetails> Students = studentDetailsRepository.findAll();
-        System.out.println("Details -------"+Students);
-        return Students;
+    public StudentDetails getStudentDetails(int StudentID) {
+        return studentDetailsRepository.findById(StudentID).orElse(null);
     }
 
-    public StudentDetailsDto getDetailsByID(int id) {
-        return studentDetailsRepository.getDetailsByID(id);
+    public Map<String, Object> getStudentMarks(int StudentId) {
+        Map<String, Object> result = new HashMap<>();
+        StudentDetails studentDetails = studentDetailsRepository.findById(StudentId).orElse(null);
+        if (studentDetails != null) {
+            List<Subjects> subjects = studentDetails.getSubjects();
+            int totalMarks = 0;
+            for (Subjects subject : subjects) {
+                totalMarks += subject.getTelugu() + subject.getHindi() + subject.getEnglish() + subject.getMaths() + subject.getScience() + subject.getSocial();
+            }
+            int averageMarks = totalMarks / subjects.size();
+            result.put("student", studentDetails);
+            result.put("totalMarks", totalMarks);
+            result.put("averageMarks", averageMarks);
+
+        }
+        return result;
+    }
+
+    public StudentDetails getClassTopper() {
+        return studentDetailsRepository.classTopper();
     }
 
 }

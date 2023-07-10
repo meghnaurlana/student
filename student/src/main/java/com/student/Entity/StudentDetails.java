@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "student_details")
 public class StudentDetails {
     @Id
-public int id;
+    public int id;
     @Column(name = "name")
     public String name;
     @Column(name = "section")
